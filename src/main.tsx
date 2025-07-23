@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ErrorBoundary } from 'react-error-boundary'
 import { router } from './router'
+import { AuthProvider } from './contexts/AuthContext'
 import ErrorFallback from './components/common/ErrorFallback'
 import 'antd/dist/reset.css'
 
@@ -22,7 +23,9 @@ enableMocks().then(() => {
     <React.StrictMode>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
+          <AuthProvider>
+            <RouterProvider router={router} />
+          </AuthProvider>
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </ErrorBoundary>

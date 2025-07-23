@@ -1,6 +1,8 @@
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
-import { Layout, Menu, Typography, Avatar } from 'antd'
-import { UserOutlined, InfoCircleOutlined } from '@ant-design/icons'
+import { Layout, Menu, Typography, Avatar, Dropdown } from 'antd'
+import { UserOutlined, InfoCircleOutlined, LogoutOutlined } from '@ant-design/icons'
+import { useAuth } from './hooks/useAuth'
+import type { MenuProps } from 'antd'
 
 const { Header, Sider, Content } = Layout
 const { Title } = Typography
@@ -8,6 +10,7 @@ const { Title } = Typography
 export default function App() {
   const navigate = useNavigate()
   const location = useLocation()
+  const { user, logout } = useAuth()
 
   const menuItems = [
     {
@@ -26,6 +29,28 @@ export default function App() {
     navigate(key)
   }
 
+  const handleLogout = () => {
+    logout()
+    navigate('/login')
+  }
+
+  const userMenuItems: MenuProps['items'] = [
+    {
+      key: 'profile',
+      icon: <UserOutlined />,
+      label: 'Profile',
+    },
+    {
+      type: 'divider',
+    },
+    {
+      key: 'logout',
+      icon: <LogoutOutlined />,
+      label: 'Logout',
+      onClick: handleLogout,
+    },
+  ]
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider 
@@ -40,8 +65,24 @@ export default function App() {
           borderBottom: '1px solid #f0f0f0',
           textAlign: 'center'
         }}>
-          <Avatar size={64} icon={<UserOutlined />} style={{ marginBottom: '0.5rem' }} />
-          <Title level={4} style={{ margin: 0 }}>Admin Panel</Title>
+          <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
+            <div style={{ cursor: 'pointer' }}>
+              <Avatar 
+                size={64} 
+                src={user?.avatar}
+                icon={<UserOutlined />} 
+                style={{ marginBottom: '0.5rem' }} 
+              />
+              <Title level={4} style={{ margin: 0 }}>
+                {user?.name || 'Admin Panel'}
+              </Title>
+              {user?.role && (
+                <Typography.Text type="secondary" style={{ fontSize: '12px' }}>
+                  {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
+                </Typography.Text>
+              )}
+            </div>
+          </Dropdown>
         </div>
         
         <Menu 
