@@ -1,16 +1,7 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
 import type { AuthUser, LoginRequest, LoginResponse } from '../types/auth'
-
-interface AuthContextType {
-  user: AuthUser | null
-  login: (credentials: LoginRequest) => Promise<void>
-  logout: () => void
-  isLoading: boolean
-  isAuthenticated: boolean
-}
-
-export const AuthContext = createContext<AuthContextType | undefined>(undefined)
+import { AuthContext, type AuthContextType } from './auth-context'
 
 interface AuthProviderProps {
   children: ReactNode
