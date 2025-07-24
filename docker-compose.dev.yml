@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:3001/api
+      - VITE_APP_NAME=Vite React TS Starter (Dev)
+      - VITE_LOG_LEVEL=debug
+    volumes:
+      - ./src:/app/src:ro
+      - ./public:/app/public:ro
+    networks:
+      - app-network
+
+  # Optional: Add a development proxy/API server
+  # api:
+  #   image: node:20-alpine
+  #   working_dir: /app
+  #   ports:
+  #     - "3001:3001"
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    driver: bridge
