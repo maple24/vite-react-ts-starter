@@ -4,6 +4,7 @@ A modern, feature-rich React application built with TypeScript, Vite, and a care
 
 ## 🚀 Features
 
+### Core Features
 - ⚡ **Vite** - Lightning fast build tool and dev server
 - ⚛️ **React 19** - Latest React with modern features
 - 🔷 **TypeScript** - Type safety and better developer experience
@@ -15,6 +16,16 @@ A modern, feature-rich React application built with TypeScript, Vite, and a care
 - 🚨 **Error Boundaries** - Graceful error handling
 - 🔧 **ESLint & Prettier** - Code quality and formatting
 - 📱 **Responsive Design** - Mobile-first approach
+
+### 🔥 Enhanced Features
+- 🔐 **JWT Token Management** - Secure token handling with expiration checks
+- 🛡️ **Role-based Access Control (RBAC)** - Component and route protection
+- 🌙 **Dark/Light Theme Toggle** - System preference aware theming
+- 🔔 **Toast Notifications** - Elegant notification system
+- 🌍 **Internationalization (i18n)** - Multi-language support (EN, ZH)
+- 📱 **PWA Support** - Progressive Web App with offline capabilities
+
+> 📖 **[View Enhanced Features Guide →](./FEATURES.md)**
 
 ## 🛠️ Tech Stack
 

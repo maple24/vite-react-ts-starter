@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
 import type { AuthUser, LoginRequest, LoginResponse } from '../types/auth'
 import { AuthContext, type AuthContextType } from './auth-context'
+import { tokenManager } from '../utils/tokenManager'
 
 interface AuthProviderProps {
   children: ReactNode
@@ -13,7 +14,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   useEffect(() => {
     // Check if user is logged in from localStorage
-    const token = localStorage.getItem('authToken')
+    const token = tokenManager.getToken()
     const savedUser = localStorage.getItem('authUser')
     
     if (token && savedUser) {
@@ -22,8 +23,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setUser({ ...parsedUser, isAuthenticated: true })
       } catch (error) {
         console.error('Error parsing saved user:', error)
-        localStorage.removeItem('authToken')
-        localStorage.removeItem('authUser')
+        tokenManager.clearTokens()
       }
     }
     
@@ -42,7 +42,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
       
       setUser(authUser)
-      localStorage.setItem('authToken', response.token)
+      tokenManager.setToken(response.token)
+      if (response.refreshToken) {
+        tokenManager.setRefreshToken(response.refreshToken)
+      }
       localStorage.setItem('authUser', JSON.stringify(response.user))
     } finally {
       setIsLoading(false)
@@ -51,8 +54,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = () => {
     setUser(null)
-    localStorage.removeItem('authToken')
-    localStorage.removeItem('authUser')
+    tokenManager.clearTokens()
   }
 
   const value: AuthContextType = {

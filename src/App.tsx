@@ -1,7 +1,11 @@
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
-import { Layout, Menu, Typography, Avatar, Dropdown } from 'antd'
-import { UserOutlined, InfoCircleOutlined, LogoutOutlined } from '@ant-design/icons'
+import { Layout, Menu, Typography, Avatar, Dropdown, Space } from 'antd'
+import { UserOutlined, InfoCircleOutlined, LogoutOutlined, ExperimentOutlined } from '@ant-design/icons'
 import { useAuth } from './hooks/useAuth'
+import { useTranslation } from './hooks/useTranslation'
+import { useTheme } from './hooks/useTheme'
+import ThemeToggle from './components/common/ThemeToggle'
+import LanguageSwitcher from './components/common/LanguageSwitcher'
 import type { MenuProps } from 'antd'
 
 const { Header, Sider, Content } = Layout
@@ -11,17 +15,24 @@ export default function App() {
   const navigate = useNavigate()
   const location = useLocation()
   const { user, logout } = useAuth()
+  const { t } = useTranslation()
+  const { theme } = useTheme()
 
   const menuItems = [
     {
       key: '/',
       icon: <UserOutlined />,
-      label: 'User Management',
+      label: t('navigation.users'),
     },
     {
       key: '/about',
       icon: <InfoCircleOutlined />,
-      label: 'About',
+      label: t('navigation.about'),
+    },
+    {
+      key: '/features',
+      icon: <ExperimentOutlined />,
+      label: t('navigation.features'),
     },
   ]
 
@@ -55,14 +66,14 @@ export default function App() {
     <Layout style={{ minHeight: '100vh' }}>
       <Sider 
         width={250}
+        theme={theme}
         style={{
-          background: '#fff',
-          boxShadow: '2px 0 8px rgba(0,0,0,0.1)',
+          boxShadow: '2px 0 8px var(--shadow)',
         }}
       >
         <div style={{ 
           padding: '1rem', 
-          borderBottom: '1px solid #f0f0f0',
+          borderBottom: '1px solid var(--border-color)',
           textAlign: 'center'
         }}>
           <Dropdown menu={{ items: userMenuItems }} placement="bottomRight">
@@ -99,20 +110,23 @@ export default function App() {
       
       <Layout>
         <Header style={{ 
-          background: '#fff', 
           padding: '0 2rem',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          boxShadow: '0 2px 8px var(--shadow)',
           display: 'flex',
-          alignItems: 'center'
+          alignItems: 'center',
+          justifyContent: 'space-between'
         }}>
           <Title level={3} style={{ margin: 0 }}>
             React TypeScript Starter
           </Title>
+          <Space>
+            <LanguageSwitcher size="small" />
+            <ThemeToggle size="small" />
+          </Space>
         </Header>
         
         <Content style={{ 
           margin: '1rem',
-          background: '#f5f5f5',
           borderRadius: '8px',
           overflow: 'auto'
         }}>

@@ -3,6 +3,7 @@ import App from '../App'
 import Home from '../pages/Home'
 import About from '../pages/About'
 import Login from '../pages/Login'
+import Features from '../pages/Features'
 import ProtectedRoute from '../components/common/ProtectedRoute'
 
 export const router = createBrowserRouter([
@@ -20,6 +21,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'about', element: <About /> },
+      { path: 'features', element: <Features /> },
     ],
   },
 ])
