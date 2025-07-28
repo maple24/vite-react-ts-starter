@@ -15,7 +15,11 @@ export default function LoadingSpinner({
   spinning = true 
 }: LoadingSpinnerProps) {
   return (
-    <Spin size={size} tip={tip} spinning={spinning}>
+    <Spin 
+      size={size} 
+      tip={children ? tip : undefined} 
+      spinning={spinning}
+    >
       {children}
     </Spin>
   )

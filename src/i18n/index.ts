@@ -46,6 +46,7 @@ const en = {
     settings: 'Settings',
     users: 'Users',
     dashboard: 'Dashboard',
+    features: 'Features Demo'
   },
   user: {
     name: 'Name',
