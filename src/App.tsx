@@ -1,6 +1,6 @@
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { Layout, Menu, Typography, Avatar, Dropdown, Space } from 'antd'
-import { UserOutlined, InfoCircleOutlined, LogoutOutlined, ExperimentOutlined } from '@ant-design/icons'
+import { HomeOutlined, UserOutlined, InfoCircleOutlined, LogoutOutlined, ExperimentOutlined } from '@ant-design/icons'
 import { useAuth } from './hooks/useAuth'
 import { useTranslation } from './hooks/useTranslation'
 import { useTheme } from './hooks/useTheme'
@@ -21,6 +21,11 @@ export default function App() {
   const menuItems = [
     {
       key: '/',
+      icon: <HomeOutlined />,
+      label: t('navigation.home'),
+    },
+    {
+      key: '/users',
       icon: <UserOutlined />,
       label: t('navigation.users'),
     },
@@ -50,6 +55,7 @@ export default function App() {
       key: 'profile',
       icon: <UserOutlined />,
       label: 'Profile',
+      onClick: () => navigate('/profile'),
     },
     {
       type: 'divider',
