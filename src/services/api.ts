@@ -1,5 +1,8 @@
 import type { User, CreateUserRequest } from '../types'
 
+// API Configuration
+// When USE_MOCK_API is true, MSW will intercept requests
+// When false, requests will go through Vite proxy to your backend
 const API_BASE_URL = '/api'
 
 export class ApiError extends Error {

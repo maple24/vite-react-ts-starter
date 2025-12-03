@@ -66,6 +66,21 @@ export default defineConfig({
     port: 5173,
     host: true, // Allow external connections
     strictPort: true,
+    proxy: {
+      // Proxy API requests to backend
+      '/api': {
+        target: 'http://localhost:3000', // Your backend URL
+        changeOrigin: true,
+        secure: false,
+        // rewrite: (path) => path.replace(/^\/api/, ''), // Remove /api prefix if needed
+      },
+      // Example: proxy WebSocket connections
+      '/ws': {
+        target: 'ws://localhost:3000',
+        ws: true,
+        changeOrigin: true,
+      },
+    },
   },
   preview: {
     port: 4173,

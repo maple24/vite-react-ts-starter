@@ -15,8 +15,11 @@ import 'antd/dist/reset.css'
 
 const queryClient = new QueryClient()
 
+// Enable MSW mock API conditionally based on environment variable
 async function enableMocks() {
-  if (import.meta.env.DEV) {
+  const useMockApi = import.meta.env.VITE_USE_MOCK_API === 'true'
+  
+  if (import.meta.env.DEV && useMockApi) {
     const { worker } = await import('./mocks/browser')
     await worker.start()
   }
