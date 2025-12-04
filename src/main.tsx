@@ -8,7 +8,7 @@ import { App as AntdApp } from 'antd'
 import { router } from './router'
 import { AuthProvider } from './contexts/AuthContext'
 import { ThemeProvider } from './contexts/ThemeContext'
-import ToastProvider from './components/common/ToastProvider'
+import { ToastProvider } from './contexts/ToastContext'
 import ErrorFallback from './components/common/ErrorFallback'
 import './i18n' // Initialize i18n
 import 'antd/dist/reset.css'

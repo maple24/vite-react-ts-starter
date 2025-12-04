@@ -1,12 +1,14 @@
+import React from 'react'
 import { ReactNode } from 'react'
 import { App as AntdApp } from 'antd'
-import { toast } from '../Toast'
+import { ToastContext } from './toast-context'
+import { toast } from '../components/common/Toast'
 
 interface ToastProviderProps {
   children: ReactNode
 }
 
-export default function ToastProvider({ children }: ToastProviderProps) {
+export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
   const { message } = AntdApp.useApp()
 
   // Set the message API instance for the toast service
@@ -14,3 +16,4 @@ export default function ToastProvider({ children }: ToastProviderProps) {
 
   return <>{children}</>
 }
+
