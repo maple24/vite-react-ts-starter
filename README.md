@@ -167,6 +167,46 @@ pnpm dev
 - `pnpm preview` - Preview production build locally
 - `pnpm lint` - Run ESLint to check code quality
 
+## 🚀 Deployment
+
+### Build for Production
+
+**Standard build**:
+```bash
+pnpm build
+```
+
+**Preview locally**:
+```bash
+pnpm preview
+```
+
+### Docker Deployment
+
+**Build image**:
+```bash
+docker build -t vite-react-app .
+```
+
+**Run container**:
+```bash
+docker run -p 80:80 vite-react-app
+```
+
+**Docker Compose (development)**:
+```bash
+docker-compose -f docker-compose.dev.yml up
+```
+
+**Docker Compose (production)**:
+```bash
+docker-compose -f docker-compose.prod.yml up -d
+```
+
+> 📖 **For detailed deployment options and configurations, see:**
+> - [Docker Documentation →](./docs/DOCKER.md)
+> - [Backend Integration Guide →](./docs/BACKEND_INTEGRATION.md)
+
 ## 💡 Usage Examples
 
 ### Using Toast Notifications
