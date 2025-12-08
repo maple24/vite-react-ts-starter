@@ -1,7 +1,6 @@
 import React from 'react'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { App as AntdApp } from 'antd'
-import { ToastContext } from './toast-context'
 import { toast } from '../components/common/Toast'
 
 interface ToastProviderProps {
@@ -16,4 +15,5 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
 
   return <>{children}</>
 }
+
 
