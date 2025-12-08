@@ -14,11 +14,9 @@
     "format:check": "prettier --check .",
     "docker:build": "docker build -t vite-react-ts-starter .",
     "docker:run": "docker run -p 3000:80 vite-react-ts-starter",
-    "docker:dev": "docker-compose -f docker-compose.dev.yml up",
-    "docker:prod": "docker-compose -f docker-compose.prod.yml up",
-    "docker:up": "docker-compose up",
-    "docker:down": "docker-compose down",
-    "docker:logs": "docker-compose logs -f"
+    "docker:prod": "docker-compose -f docker-compose.prod.yml up -d",
+    "docker:down": "docker-compose -f docker-compose.prod.yml down",
+    "docker:logs": "docker-compose -f docker-compose.prod.yml logs -f"
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",

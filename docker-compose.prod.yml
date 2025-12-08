@@ -7,10 +7,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "80:80"
-    environment:
-      - VITE_API_BASE_URL=https://api.yourdomain.com/api
-      - VITE_APP_NAME=Vite React TS Starter
-      - VITE_LOG_LEVEL=error
     restart: unless-stopped
     networks:
       - app-network
@@ -18,3 +14,4 @@ services:
 networks:
   app-network:
     driver: bridge
+

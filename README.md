@@ -193,14 +193,15 @@ docker build -t vite-react-app .
 docker run -p 80:80 vite-react-app
 ```
 
-**Docker Compose (development)**:
-```bash
-docker-compose -f docker-compose.dev.yml up
-```
-
 **Docker Compose (production)**:
 ```bash
 docker-compose -f docker-compose.prod.yml up -d
+```
+
+**Development**:
+```bash
+# For development, run locally without Docker for hot reload
+pnpm dev
 ```
 
 > 📖 **For detailed deployment options and configurations, see:**
